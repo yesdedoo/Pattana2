@@ -2,6 +2,11 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RankPage } from '../rank/rank';
 
+//REST
+import { from } from 'rxjs/observable/from'
+import { TestapiProvider } from '../../providers/testapi/testapi';
+
+
 /**
  * Generated class for the QuizPage page.
  *
@@ -83,9 +88,19 @@ export class QuizPage {
   W30buttonColor: string;
   C0buttonColor: string;
 
+  //Variable from DB
+  quesID : any;
+  Qtext: any;
+  feedback: any;
+  repeating: any;
+  LOID: any;
+
+  checkData:any;
+
+  id:any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public testapiProvider:TestapiProvider) {
   
     this.Ques = [
       "The type of diagram in which the operations are apecified on objects is considered as"
@@ -116,6 +131,12 @@ export class QuizPage {
  
   //Slide 1
   Wrong11ButtonColor(){
+    
+    this.Qtext = "Banana"
+    this.checkData = from(this.testapiProvider.ImportQuestion(this.Qtext));
+    this.checkData.subscribe(val =>{
+      console.log(val)
+    })
     if(this.checker1==true){
       this.W11buttonColor = this.WbuttonColor;
       this.checker1 = false;
@@ -136,6 +157,10 @@ export class QuizPage {
     } 
   }
   Correct1ButtonColor(){
+    this.checkData = from(this.testapiProvider.ImportQuestionGet())
+    this.checkData.subscribe(val =>{
+      console.log(val)
+    })
     if(this.checker1==true){
       this.C1buttonColor = '#8cc63f';
       this.checker1=false;

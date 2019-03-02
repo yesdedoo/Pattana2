@@ -22,6 +22,8 @@ import { CardPage } from '../pages/card/card';
 import { CountPage } from '../pages/count/count';
 import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { CalendarModule } from 'ion2-calendar';
+import { TestapiProvider } from '../providers/testapi/testapi';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     MyApp,
@@ -42,6 +44,7 @@ import { CalendarModule } from 'ion2-calendar';
   imports: [
     BrowserModule,
     CalendarModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp, {tabsHideOnSubPages: true,},),RoundProgressModule,
   ],
   bootstrap: [IonicApp],
@@ -64,7 +67,8 @@ import { CalendarModule } from 'ion2-calendar';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    TestapiProvider
   ]
 })
 export class AppModule {}

@@ -27,7 +27,6 @@ export class CountPage {
 
  startTimer(){
    this.timerVar = Observable.interval(1000).subscribe( x=> {
-     console.log(x)
      this.timerVal = x;
 
      if(x==2){
