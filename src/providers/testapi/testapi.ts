@@ -13,12 +13,13 @@ export class TestapiProvider {
 
   //Which IP and what is it purpose
   restApiQuestion = 'http://104.196.19.248:5001/question'
+  restApiChoice = 'http://104.196.19.248:5001/choice'
   restApiRegister = 'http://104.196.19.248:5002/register'
   constructor(public http: HttpClient) {
   }
 
   //Get question & choice from DB
-  ImportQuestionGet()
+  GetQuestion()
   {
     //var that get data from DB
     
@@ -54,6 +55,43 @@ export class TestapiProvider {
       .catch(err => console.log(err))
     });
   }
-  
 
+  GetChoice()
+  {
+    //var that get data from DB
+    
+    return new Promise(resolve =>{
+      fetch(this.restApiChoice,{
+        method:'GET',
+      })
+      .then(r=>{
+        this.data = r.json()
+        resolve(this.data)
+      })
+      .catch(err => console.log(err))
+    });
+  }
+  
+  //INSERT the registration
+  /*
+  PostRegister(fName,lName,Email,Password)
+  {
+    //Registration data from register page
+    var data = {registerData : {fname:fName,lname:lName,email:Email,pwd:Password}}
+    return new Promise(resolve =>{
+      fetch(this.restApiRegister,{
+        method:'POST',
+        body:JSON.stringify(data),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(r=>{
+        this.data = r.json()
+        resolve(this.data)
+      })
+      .catch(err => console.log(err))
+    });
+  }
+  */
 }

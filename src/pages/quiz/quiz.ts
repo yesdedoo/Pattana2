@@ -88,16 +88,10 @@ export class QuizPage {
   W30buttonColor: string;
   C0buttonColor: string;
 
-  //Variable from DB
-  quesID : any;
+  //Variable for REST DB
   Qtext: any;
-  feedback: any;
-  repeating: any;
-  LOID: any;
-
   checkData:any;
-
-  id:any;
+  
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public testapiProvider:TestapiProvider) {
@@ -133,7 +127,7 @@ export class QuizPage {
   Wrong11ButtonColor(){
     
     this.Qtext = "Banana"
-    this.checkData = from(this.testapiProvider.ImportQuestion(this.Qtext));
+    this.checkData = from(this.testapiProvider.ImportQuestion(this.Qtext))
     this.checkData.subscribe(val =>{
       console.log(val)
     })
@@ -157,7 +151,7 @@ export class QuizPage {
     } 
   }
   Correct1ButtonColor(){
-    this.checkData = from(this.testapiProvider.ImportQuestionGet())
+    this.checkData = from(this.testapiProvider.GetQuestion())
     this.checkData.subscribe(val =>{
       console.log(val)
     })
@@ -168,6 +162,10 @@ export class QuizPage {
   }
   //Slide 2
   Wrong12ButtonColor(){
+    this.checkData = from(this.testapiProvider.GetChoice())
+    this.checkData.subscribe(val =>{
+      console.log(val)
+    })
     if(this.checker2==true){
       this.W12buttonColor = this.WbuttonColor;
       this.checker2 = false;
