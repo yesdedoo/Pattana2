@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class TestapiProvider {
   data: any
+  check:any
 
   //Which IP and what is it purpose
   restApiQuestion = 'http://104.196.19.248:5001/question'
@@ -73,11 +74,13 @@ export class TestapiProvider {
   }
   
   //INSERT the registration
-  /*
+  
   PostRegister(fName,lName,Email,Password)
   {
+    
     //Registration data from register page
-    var data = {registerData : {fname:fName,lname:lName,email:Email,pwd:Password}}
+    var data = {registerData : {fname:fName,lname:lName,email:Email,pwd:Password,exist:this.check}}
+    //To check the existing account
     return new Promise(resolve =>{
       fetch(this.restApiRegister,{
         method:'POST',
@@ -93,5 +96,5 @@ export class TestapiProvider {
       .catch(err => console.log(err))
     });
   }
-  */
+  
 }
